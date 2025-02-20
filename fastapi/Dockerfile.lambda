@@ -1,0 +1,15 @@
+# ✅ AWS Lambda 공식 Python 3.9 베이스 이미지 사용
+FROM public.ecr.aws/lambda/python:3.9
+
+# 작업 디렉토리 설정
+WORKDIR /var/task
+
+# 패키지 복사 및 설치
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# FastAPI 앱 파일 복사
+COPY main.py .
+
+# ✅ Lambda 실행을 위한 핸들러 지정
+CMD ["main.handler"]
